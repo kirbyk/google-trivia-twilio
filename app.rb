@@ -1,14 +1,30 @@
 require 'rubygems'
 require 'twilio-ruby'
 require 'sinatra'
-require "sinatra/activerecord"
+# require "sinatra/activerecord"
+require 'data_mapper'
+require "dm-sqlite-adapter"
  
-set :database, "sqlite3:///blog.db"
+# set :database, "sqlite3:///blog.db"
+DataMapper::setup(:default, "sqlite3://blog.db")
 
-class Msg < ActiveRecord::Base
+# class Msg < ActiveRecord::Base
+# end
+
+# class User < ActiveRecord::Base
+# end
+
+class Msg
+  include DataMapper::Resource
+  property :id, Serial
+  
+  belongs_to :user
 end
 
-class User < ActiveRecord::Base
+class User
+  include DataMapper::Resource
+  property :id, Serial
+  has n, :msgs
 end
 
 get '/' do
