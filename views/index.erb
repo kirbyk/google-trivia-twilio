@@ -1,0 +1,21 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+  window.setTimeout(function(){location.reload()},1000)
+
+  var reset = function(){
+    $.ajax({
+      type: "GET",
+      url: "/reset",
+    });
+  }
+</script>
+
+<a href="#" onClick="reset();">Reset</a>
+
+<% @messages.each do |msg| %>
+  <div style="margin: 10px; padding: 10px; background-color: #AAA; width: 200px;">
+    <span><%= msg.body %></span>
+    <span><%= msg.phone %></span>
+  </div>
+<% end %>
