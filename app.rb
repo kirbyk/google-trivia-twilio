@@ -1,30 +1,14 @@
 require 'rubygems'
 require 'twilio-ruby'
 require 'sinatra'
-# require "sinatra/activerecord"
-require 'data_mapper'
-require "dm-sqlite-adapter"
+require "sinatra/activerecord"
  
-# set :database, "sqlite3:///blog.db"
-DataMapper::setup(:default, "sqlite3://blog.db")
+set :database, "sqlite3:///blog.db"
 
-# class Msg < ActiveRecord::Base
-# end
-
-# class User < ActiveRecord::Base
-# end
-
-class Msg
-  include DataMapper::Resource
-  property :id, Serial
-  
-  belongs_to :user
+class Msg < ActiveRecord::Base
 end
 
-class User
-  include DataMapper::Resource
-  property :id, Serial
-  has n, :msgs
+class User < ActiveRecord::Base
 end
 
 get '/' do
@@ -55,7 +39,7 @@ get '/sms-quickstart' do
     twiml.text
   else
     puts "QUICK START: User submitting answer"
-    Msg.create(body: params[:Body], phone: params[:From])
+    Msg.create(body: params[:Body], phone: params[:From], name: @user.name)
     twiml = Twilio::TwiML::Response.new do |r|
       r.Message "#{@user.name}, your message has been received."
     end

@@ -1,0 +1,25 @@
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+  background-color: #2980b9;
+}
+
+.reset {
+  margin-top: 8px;
+}
+
+.panel {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 2em;
+}
+
+.panel-footer {
+  text-align: right;
+}
+
+.text {
+  text-align: center;
+  background-color: #f1c40f;
+}

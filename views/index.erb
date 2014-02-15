@@ -1,21 +1,57 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<script>
-  window.setTimeout(function(){location.reload()},1000)
+    <title>Google Text Aggregator</title>
 
-  var reset = function(){
-    $.ajax({
-      type: "GET",
-      url: "/reset",
-    });
-  }
-</script>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="custom.css" rel="stylesheet">
+  </head>
 
-<a href="#" onClick="reset();">Reset</a>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Google Text Aggregator</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <button type="button" class="btn btn-danger reset" onclick="reset()">Reset</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<% @messages.each do |msg| %>
-  <div style="margin: 10px; padding: 10px; background-color: #AAA; width: 200px;">
-    <span><%= msg.body %></span>
-    <span><%= msg.phone %></span>
-  </div>
-<% end %>
+    <div class="container">
+
+      <div class="panel panel-default text">
+        <div class="panel-body">
+          <h1>Text (765) 681-5587 to Join!</h1>
+        </div>
+      </div>
+
+      <% @messages.each do |msg| %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= msg.body %>
+          </div>
+          <div class="panel-footer">
+            <%= msg.name %>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
