@@ -3,7 +3,7 @@ source :rubygems
  
 gem "sinatra"
 gem "sqlite3"
-gem "activerecord"
+gem "activerecord", ">= 4.0.3"
 gem "sinatra-activerecord"
 
 group :development do
